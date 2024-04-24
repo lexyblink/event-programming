@@ -1,0 +1,177 @@
+<!-- Author: Samira -->
+<!--  Document Type -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board Page</title> <!-- Title of the page -->
+    <link rel="stylesheet" href="main.css"> <!-- Link to external CSS file -->
+</head>
+
+<body>
+    <header>
+        <h1>My Awesome Meme Website</h1> <!-- Header with the website title -->
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="">
+        <h2>About This Page</h2>        
+        <p>Welcome to the world of memes! Here at My Awesome Meme Website, we bring you the latest and greatest in
+            internet humor. From relatable jokes to viral sensations, we've got it all. Sit back, relax, and enjoy a
+            good laugh with us!</p>
+
+        <p>Explore our vast collection of memes covering a wide range of topics, including technology, pop culture, and
+            everyday life. Whether you're looking for a quick chuckle or a belly laugh, you'll find something to tickle
+            your funny bone here.</p>
+    </section>
+
+    <!-- Section containing the objectives of the website -->
+
+    <section id="objectives" style="text-align: left; margin-left: 270px;">
+        <h2>Objectives</h2>
+        <ul>
+            <!-- Bullet points for degree objectives -->
+            <li>
+                <p>Develop, analyze, and integrate artificial intelligence applications and IoT systems.</p>
+            </li>
+            <li>
+                <p>Demonstrate skills to design and create natural language processing systems.</p>
+            </li>
+            <li>
+                <p>Demonstrate designing and creating machine learning systems using best practices and patterns.</p>
+            </li>
+            <li>
+                <p>Demonstrate new and original data in deep learning by consuming big data with original algorithms.
+                </p>
+            </li>
+            <li>
+                <p>Demonstrate software development skills using more than one programming language, development
+                    environment, platform, and source control system.</p>
+            </li>
+            <li>
+                <p>Describe, develop, analyze and integrate data structures, databases, and database management systems.
+                </p>
+            </li>
+        </ul>
+    </section>
+    <!--Create a line break-->
+    <br>
+    <!-- Section to hold the user input controls-->
+    <section id="details" style="text-align: left; margin-left: 270px;">
+        <!--This form holds the user input elements-->
+        <form id="user_details">
+            <h2>Enter and validate your details</h2>
+            <!--Label for firstName input-->
+            <label for="firstName">First Name:</label>
+            <!--Text box for firstName-->
+            <input type="text" id="firstName" name="firstName"><br><br>
+
+            <!--Label for lastName input-->
+            <label for="lastName">Last Name:</label>
+            <!--Text box for lastName-->
+            <input type="text" id="lastName" name="lastName"><br><br>
+
+            <!--Label for zipCode input-->
+            <label for="zipCode">Zip Code:</label>
+            <!--Text box for zipCode-->
+            <input type="text" id="zipCode" name="zipCode"><br><br>
+
+            <!--Submit button, will run the JS validation when clicked-->
+            <input type="submit" value="Submit" id="submit_button">
+        </form>
+    </section>
+    <!--Create a line break-->
+    <br>
+    <!--This section will be automatically populated using Javascript-->
+    <section id="meme_section" style="text-align: left; margin-left: 270px;">
+
+    </section>
+
+    <!-- Footer section displaying copyright information -->
+    <footer>
+        &copy; <strong> 2024 My Awesome Meme Website</strong>
+    </footer>
+</body>
+<!--Javascript code-->
+<script>
+    // prevent the default submit behavior on the form button
+    let submit_button = document.getElementById("submit_button");
+    submit_button.addEventListener("click", function (event) {
+        event.preventDefault();
+        // Create a variable with html code to be put meme_section
+        // if input is valid
+        let meme = `<p>
+                        <img id="memeImage" src="Images/meme.jpeg" alt="Funny Meme">
+                    </p>
+                    <br>
+        <video src="Videos/6706d028-0bca2d57.mp4" alt="www.uta.edu/" width="500" height="300" autoplay controls></video>
+                    `;
+        // get meme_section by ID
+        let meme_location = document.getElementById("meme_section");
+        // If both validate_name and validate_zip function returns true
+        if (validate_name() && validate_zip())
+        {
+            // set html of meme_section
+            meme_location.innerHTML = meme;
+        }
+        else {
+            // Clear meme_location
+            meme_location.innerHTML = "";
+        }
+    });
+    function validate_name() {
+        // Create boolean variable to keep track of whether name is valid
+        let name_valid = false;
+
+        // read the value of firstName into a variable
+        let fName = document.forms["user_details"]["firstName"].value;
+        // read the value of firstName into a variable
+        let lName = document.forms["user_details"]["lastName"].value;
+        // combine fName and lName into a single variable
+        let full_name = fName + lName;
+        // Check if the variable has more than >20 characters and give a warning
+        if (full_name.length > 20) {
+            alert("Name is too long.");
+        }
+        else {
+            // validation passed,set name_valid to true
+            name_valid = true;
+        }
+        return name_valid;
+    }
+    function validate_zip() {
+        // Create a variable to keep track of whether zip is address
+        let zip_valid = false;
+        // read the value of zipCode into a variable
+        let zipCode = document.forms["user_details"]["zipCode"].value;
+        // Check if the zip is valid
+        // Check if the zipCode has length five
+        // isNaN return true if passed argument is not a nmber
+        if (!isNaN(zipCode) && Number.isInteger(parseFloat(zipCode))) {
+            // Check if the zipCode has length 5
+            if (zipCode.length === 5) {
+                // validation passed, set zip_valid to true
+                zip_valid = true;
+            }
+        } 
+        else {
+            alert("Invalid zipcode.")
+        }
+        // return zip_valid
+        return zip_valid;
+    }
+
+</script>
+
+</html>
+
+<!-- End of Html Board Page-->
